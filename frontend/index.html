@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ek Baithak · Accel Business</title>
+  <meta name="description" content="Ek Baithak: a digital-first journey that takes a small business from discovery to an activated Accel Business bundle in one sitting.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23E40000'/%3E%3Ctext x='16' y='22' font-size='16' font-family='Arial' font-weight='700' fill='white' text-anchor='middle'%3EEB%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">EB</div>
+        <div><div class="brand-name">Ek Baithak<span class="dot">.</span></div><div class="brand-sub">by Accel Business</div></div>
+      </div>
+      <nav id="nav"></nav>
+      <div class="sidebar-foot">
+        <div class="help-card">
+          <div class="help-title" data-i18n="oneNumber">One number for everything</div>
+          <div class="help-num">1800-000-0000</div>
+          <div class="help-note" data-i18n="demoNote">Prototype · synthetic data only</div>
+        </div>
+      </div>
+    </aside>
+    <main>
+      <header class="topbar">
+        <div class="mobile-brand"><div class="brand-mark sm">EB</div><span class="brand-name">Ek Baithak<span class="dot">.</span></span></div>
+        <div class="crumb" id="crumb"></div>
+        <div class="top-actions">
+          <select id="lang" aria-label="Language">
+            <option value="en">English</option>
+            <option value="hi">हिंदी</option>
+          </select>
+          <button class="icon-btn" id="settingsBtn" title="AI settings" aria-label="AI settings">⚙</button>
+        </div>
+      </header>
+      <section id="view" class="view"></section>
+    </main>
+    <nav class="bottom-nav" id="bottomNav"></nav>
+  </div>
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true"></div>
+  <div id="toast" class="toast hidden"></div>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

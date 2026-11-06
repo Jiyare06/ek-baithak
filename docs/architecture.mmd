@@ -1,0 +1,37 @@
+flowchart LR
+  CH["<b>Channels</b><br/>WhatsApp bot · Mobile web/PWA<br/>Voice IVR · Partner app"]
+  subgraph OR["Orchestrator"]
+    direction TB
+    ADV["Advisor dialogue<br/>6 questions or free text"]
+    RULES["Eligibility & pricing<br/>rules engine<br/>(decides)"]
+    LLM["LLM explainer<br/>(explains only)"]
+    ADV --> RULES --> LLM
+  end
+  subgraph KYC["Smart KYC"]
+    direction TB
+    CONS["Consent per purpose"]
+    LOOK["GSTIN + Udyam lookup<br/>(mock registries)"]
+    OCR["OCR + quality checks<br/>blur · skew · checksum · names · dates"]
+    SIGN["DigiLocker + Aadhaar e-Sign<br/>(mocked)"]
+    CONS --> LOOK --> OCR --> SIGN
+  end
+  subgraph FUL["Fulfilment"]
+    direction TB
+    PAY["UPI AutoPay mandate"]
+    OMS["Order & install mgmt<br/>ETA from catalogue days"]
+    TRK["Tracker + WhatsApp push"]
+    PAY --> OMS --> TRK
+  end
+  subgraph BO["Back office"]
+    direction TB
+    CON["Partner console<br/>propensity score"]
+    AUD["Consent ledger & audit log<br/>masked IDs"]
+  end
+  CAT[("Catalogue<br/>25 products")]
+  CH --> ADV
+  RULES <--> CAT
+  LLM -- "quote" --> CONS
+  SIGN --> PAY
+  TRK -- "status" --> CH
+  ADV -. "not closed" .-> CON
+  SIGN -.-> AUD
