@@ -5,7 +5,7 @@
 > Airtel **SYNC** · YTL Hackathon 2026 · **Enterprise Track A: Project Udyam Digital**
 > Team **Jagh** · Jiya · Hera Siddique
 >
-> **Live demo:** https://jiyare06.github.io/ek-baithak/ · **Repo:** https://github.com/Jiyare06/ek-baithak
+> · **Repo:** https://github.com/Jiyare06/ek-baithak
 > **Demo video (2:18):** [docs/demo/ek-baithak-demo.mp4](docs/demo/ek-baithak-demo.mp4)
 
 All businesses, people, identifiers and documents in this repo are **synthetic**. They come from the hackathon data pack and describe no real company or customer. Accel Telecom and Accel Business are the fictional operator used in the case.
