@@ -2,7 +2,7 @@
 // LLM explanation layer (see README) and are not hard-coded here.
 export const STR = {
   en: {
-    nav_home: "Home", nav_advisor: "Advisor", nav_quote: "Quote", nav_kyc: "Smart KYC", nav_track: "Track order", nav_console: "Partner console",
+    nav_home: "Home", nav_advisor: "Advisor", nav_whatsapp: "WhatsApp", nav_quote: "Quote", nav_kyc: "Smart KYC", nav_track: "Track order", nav_console: "Partner console",
     nav_customer: "For business owners", nav_staff: "For sales & partners",
     oneNumber: "One number for everything", demoNote: "Prototype · synthetic data only",
     hero_eyebrow: "Accel Business · for small businesses",
@@ -57,7 +57,7 @@ export const STR = {
     save: "Save", close: "Close",
   },
   hi: {
-    nav_home: "होम", nav_advisor: "सलाहकार", nav_quote: "कोटेशन", nav_kyc: "स्मार्ट KYC", nav_track: "ऑर्डर ट्रैक करें", nav_console: "पार्टनर कंसोल",
+    nav_home: "होम", nav_advisor: "सलाहकार", nav_whatsapp: "WhatsApp", nav_quote: "कोटेशन", nav_kyc: "स्मार्ट KYC", nav_track: "ऑर्डर ट्रैक करें", nav_console: "पार्टनर कंसोल",
     nav_customer: "बिज़नेस मालिकों के लिए", nav_staff: "सेल्स और पार्टनर्स के लिए",
     oneNumber: "हर चीज़ के लिए एक नंबर", demoNote: "प्रोटोटाइप · सिर्फ़ नमूना डेटा",
     hero_eyebrow: "Accel Business · छोटे व्यापारों के लिए",

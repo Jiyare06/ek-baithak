@@ -4,6 +4,9 @@
 
 > Airtel **SYNC** · YTL Hackathon 2026 · **Enterprise Track A: Project Udyam Digital**
 > Team **Jagh** · Jiya · Hera Siddique
+>
+> **Live demo:** https://jiyare06.github.io/ek-baithak/ · **Repo:** https://github.com/Jiyare06/ek-baithak
+> **Demo video (2:18):** [docs/demo/ek-baithak-demo.mp4](docs/demo/ek-baithak-demo.mp4)
 
 All businesses, people, identifiers and documents in this repo are **synthetic**. They come from the hackathon data pack and describe no real company or customer. Accel Telecom and Accel Business are the fictional operator used in the case.
 
@@ -25,14 +28,16 @@ The prototype covers all four parts of the build challenge, plus two stretch goa
 | **Quote & checkout** | One monthly price. Add-ons toggle on and off, quantities change, and setup fees can be spread over the bills. Ineligible products are shown greyed out with the reason ("needs 10+ employees", "needs an active GSTIN"). | `frontend/js/views/quote.js` |
 | **Smart KYC** | A consent screen per purpose (DPDP), then a mock GSTIN/Udyam lookup. Documents are uploaded and **OCR'd in the browser**, and each one gets blur, tilt, checksum, registry status, name-match, 90-day address-proof and ID-expiry checks. DigiLocker and Aadhaar e-Sign are mocked. | `frontend/js/kyc.js`, `frontend/js/views/kyc.js` |
 | **Tracker** | Order timeline with dates calculated from catalogue install days, technician slot booking and WhatsApp-style status pushes, so the owner never has to call. | `frontend/js/views/tracker.js` |
+| Stretch: **WhatsApp + voice** | The same advisor in a WhatsApp-style chat (quick-reply buttons, verified business header), as it would run on the WhatsApp Business API. Owners can **answer by voice** (🎙, Web Speech API, `hi-IN` / `en-IN`) and **hear replies** (🔈). Simulated WhatsApp in the prototype. | `#whatsapp` route, `frontend/js/views/advisor.js` |
+| **Advice that re-checks itself** | If the GSTIN turns out Cancelled or Suspended, at the advisor or at KYC, the rules engine removes GST-only products from the quote and says which ones. | `frontend/js/views/kyc.js`, `quote.js` |
 | Stretch: **back office** | A partner and sales console listing the leads the journey could not close, ranked by score, each with a "why" and a next best action. | `frontend/js/views/console.js` |
 | Stretch: **propensity score** | Logistic regression trained on `smb_leads.csv` (hold-out AUC **0.74**). | `analysis/build_data.py` |
 
 ### Product walkthrough (phone)
 
-| Home (हिंदी) | Advisor | Recommendation | Quote | Smart KYC | Tracker |
+| WhatsApp (हिंदी) | Advisor | Recommendation | Quote | Smart KYC | Tracker |
 |---|---|---|---|---|---|
-| ![](docs/screenshots/mobile_home_hi.png) | ![](docs/screenshots/mobile_advisor_needs.png) | ![](docs/screenshots/mobile_advisor.png) | ![](docs/screenshots/mobile_quote.png) | ![](docs/screenshots/mobile_kyc_flagged.png) | ![](docs/screenshots/mobile_tracker.png) |
+| ![](docs/screenshots/mobile_whatsapp_hi.png) | ![](docs/screenshots/mobile_advisor_needs.png) | ![](docs/screenshots/mobile_advisor.png) | ![](docs/screenshots/mobile_quote.png) | ![](docs/screenshots/mobile_kyc_flagged.png) | ![](docs/screenshots/mobile_tracker.png) |
 
 ### Desktop screens
 
@@ -81,7 +86,7 @@ The Mermaid source is in [`docs/architecture.mmd`](docs/architecture.mmd). The p
 ## Run it
 
 ```bash
-git clone https://github.com/<you>/ek-baithak.git
+git clone https://github.com/Jiyare06/ek-baithak.git
 cd ek-baithak/frontend
 python3 -m http.server 8000      # any static server works
 # open http://localhost:8000
@@ -97,7 +102,7 @@ python analysis/funnel_analysis.py       # prints every number used in the deck
 node tests/engine.test.mjs               # every recommended bundle passes every eligibility rule
 ```
 
-**Demo tips:** in Smart KYC, the *Demo: load specimen applicant* dropdown loads K01–K12. In the advisor, the demo GSTIN chip uses an Active GSTIN from the mock registry. *Simulate next update* on the tracker moves the order forward.
+**Demo tips:** in Smart KYC, the *Demo: load specimen applicant* dropdown loads K01–K12. In the advisor, two demo GSTIN chips use an Active and a Cancelled GSTIN from the mock registry, so you can watch the advice change. Voice input needs Chrome or Edge and microphone permission. *Simulate next update* on the tracker moves the order forward.
 
 **GitHub Pages:** push to `main`. The workflow in `.github/workflows/pages.yml` publishes `frontend/` (set Pages → Source: *GitHub Actions*).
 
@@ -117,7 +122,7 @@ docs/                    architecture, privacy note, business case, screenshots
 
 ## Submission checklist (from the case)
 
-- [x] Working prototype: this repo (demo video: *link to be added*)
+- [x] Working prototype: this repo, with a 2:18 demo video in [`docs/demo/`](docs/demo/ek-baithak-demo.mp4)
 - [x] Solution architecture diagram: `docs/architecture.png`
 - [x] Business case: `docs/BUSINESS_CASE.md` and the 7-slide deck
 - [x] 1-page data privacy and security note: [`docs/PRIVACY.md`](docs/PRIVACY.md)

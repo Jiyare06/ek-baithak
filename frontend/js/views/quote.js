@@ -3,7 +3,7 @@ import { price, fmt, addonOptions, enforce } from "../engine.js";
 
 export function renderQuote(v) {
   if (!S.items.length || !S.profile) {
-    v.innerHTML = `<div class="eyebrow">${t("nav_quote")}</div><h1>${t("quote_title")}</h1><div class="card"><p>${t("no_items")}</p><a class="btn" href="#/advisor">${t("start")} →</a></div>`;
+    v.innerHTML = `<div class="eyebrow">${t("nav_quote")}</div><h1>${t("quote_title")}</h1><div class="card"><p>${t("no_items")}</p><a class="btn" href="#advisor">${t("start")} →</a></div>`;
     return;
   }
   const p = S.profile;
@@ -18,6 +18,7 @@ export function renderQuote(v) {
   <div class="eyebrow">${t("nav_quote")} · ${esc(p.city || "")}</div>
   <h1>${t("quote_title")}</h1>
   <p class="lead">${t("quote_lead")}</p>
+  ${S.lastRemoved ? `<div class="check bad" style="margin-bottom:14px"><span class="ic">✕</span><span>${H ? `आपका GSTIN ${esc(S.lastRemoved.status)} है, इसलिए नियम-इंजन ने हटाया: ${esc(S.lastRemoved.names.join(", "))}। कीमत अपने-आप फिर से गिनी गई।` : `Your GSTIN is ${esc(S.lastRemoved.status)}, so the rules engine removed: ${esc(S.lastRemoved.names.join(", "))}. The price was recalculated automatically.`}</span></div>` : ""}
   ${removed ? `<div class="check warn" style="margin-bottom:14px"><span class="ic">!</span><span>${H ? `${removed} प्रोडक्ट हटाए गए क्योंकि अब वे आपके लिए योग्य नहीं हैं।` : `${removed} item(s) removed because they are no longer eligible (e.g. GSTIN status changed).`}</span></div>` : ""}
   <div class="split">
     <div class="grid">

@@ -7,7 +7,7 @@ const fd = (d, lang) => d.toLocaleDateString(lang === "hi" ? "hi-IN" : "en-IN", 
 export function renderTracker(v) {
   const o = S.order, H = S.lang === "hi";
   if (!o) {
-    v.innerHTML = `<div class="eyebrow">${t("nav_track")}</div><h1>${t("track_title")}</h1><div class="card"><p>${H ? "अभी कोई ऑर्डर नहीं।" : "No order yet."}</p><a class="btn" href="#/advisor">${t("start")} →</a></div>`;
+    v.innerHTML = `<div class="eyebrow">${t("nav_track")}</div><h1>${t("track_title")}</h1><div class="card"><p>${H ? "अभी कोई ऑर्डर नहीं।" : "No order yet."}</p><a class="btn" href="#advisor">${t("start")} →</a></div>`;
     return;
   }
   const inst = o.q.install;

@@ -11,8 +11,8 @@ export function renderHome(v) {
       <h1>${t("hero_title")}</h1>
       <p class="lead">${t("hero_lead")}</p>
       <div class="row wrap">
-        <a class="btn" href="#/advisor" id="startBtn">${t("start")} →</a>
-        ${hasOrder ? `<a class="btn ghost" href="#/${S.order ? "track" : "quote"}">${t("resume")}</a>` : ""}
+        <a class="btn" href="#advisor" id="startBtn">${t("start")} →</a>
+        ${hasOrder ? `<a class="btn ghost" href="#${S.order ? "track" : "quote"}">${t("resume")}</a>` : ""}
       </div>
       <div class="row wrap" style="margin-top:16px">
         <span class="pill">English</span><span class="pill">हिंदी</span><span class="pill">मराठी</span><span class="pill">தமிழ்</span><span class="pill">తెలుగు</span><span class="pill">বাংলা</span>

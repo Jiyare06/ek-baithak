@@ -8,7 +8,7 @@ import { renderConsole } from "./views/console.js";
 
 // ---------- state ---------------------------------------------------------
 const KEY = "ekb_state_v1";
-const fresh = () => ({ lang: "en", profile: null, chat: [], step: 0, items: [], spread: true, kyc: { consent: null, extracted: {}, thumbs: {}, specimen: "", gstin: "", udyam: "", lookup: null, esign: false }, order: null, assigned: {}, llm: { key: "", model: "claude-sonnet-4-5" } });
+const fresh = () => ({ lang: "en", profile: null, chat: [], step: 0, items: [], spread: true, kyc: { consent: null, extracted: {}, thumbs: {}, specimen: "", gstin: "", udyam: "", lookup: null, esign: false }, order: null, lastRemoved: null, voice: false, assigned: {}, llm: { key: "", model: "claude-sonnet-4-5" } });
 export const S = (() => { try { return Object.assign(fresh(), JSON.parse(localStorage.getItem(KEY)) || {}); } catch { return fresh(); } })();
 export const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch { /* private mode: keep in memory */ } };
 export const reset = () => { const keep = { lang: S.lang, llm: S.llm, assigned: S.assigned }; Object.assign(S, fresh(), keep); save(); };
@@ -43,15 +43,16 @@ async function loadData() {
 const ROUTES = [
   { id: "home", ico: "⌂", render: renderHome },
   { id: "advisor", ico: "✦", render: renderAdvisor },
+  { id: "whatsapp", ico: "✆", render: (v) => renderAdvisor(v, { wa: true }) },
   { id: "quote", ico: "₹", render: renderQuote },
   { id: "kyc", ico: "✓", render: renderKyc },
   { id: "track", ico: "◷", render: renderTracker },
   { id: "console", ico: "▤", render: renderConsole, staff: true },
 ];
-export const go = (id) => { location.hash = "#/" + id; };
+export const go = (id) => { location.hash = "#" + id; };
 
 function nav(active) {
-  const link = (r) => `<a href="#/${r.id}" class="${r.id === active ? "active" : ""}"><span class="ico">${r.ico}</span><span>${t("nav_" + r.id)}</span></a>`;
+  const link = (r) => `<a href="#${r.id}" class="${r.id === active ? "active" : ""}"><span class="ico">${r.ico}</span><span>${t("nav_" + r.id)}</span></a>`;
   document.getElementById("nav").innerHTML =
     `<div class="sep">${t("nav_customer")}</div>` + ROUTES.filter((r) => !r.staff).map(link).join("") +
     `<div class="sep">${t("nav_staff")}</div>` + ROUTES.filter((r) => r.staff).map(link).join("");
@@ -61,7 +62,7 @@ function nav(active) {
 }
 
 export function render() {
-  const id = (location.hash.replace("#/", "") || "home").split("?")[0];
+  const id = (location.hash.replace(/^#\/?/, "") || "home").split("?")[0];
   const r = ROUTES.find((x) => x.id === id) || ROUTES[0];
   nav(r.id);
   document.documentElement.lang = S.lang;

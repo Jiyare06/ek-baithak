@@ -10,7 +10,10 @@ function applyGst(gstin) {
   S.kyc.lookup = rec ? { gstin, rec } : { gstin, rec: null };
   if (rec && S.profile) {
     S.profile.gstin = gstin; S.profile.gstStatus = rec[6];
+    const before = S.items.map((i) => i.id);
     S.items = enforce(S.profile, D.catalogue, S.items);
+    const gone = before.filter((id) => !S.items.some((i) => i.id === id));
+    if (gone.length) S.lastRemoved = { names: gone.map((id) => D.C[id].name), status: rec[6] };
   }
 }
 
